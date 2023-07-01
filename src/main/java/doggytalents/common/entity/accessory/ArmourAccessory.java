@@ -94,7 +94,7 @@ public class ArmourAccessory extends Accessory {
             EquipmentSlot slotType = null;
 
             if (this.armourStack.getItem() instanceof ArmorItem) {
-                slotType = ((ArmorItem) this.armourStack.getItem()).getSlot();
+                slotType = ((ArmorItem) this.armourStack.getItem()).getType().getSlot();
             }
 
             dogIn.getAttributes().addTransientAttributeModifiers(this.armourStack.getAttributeModifiers(slotType));
@@ -105,7 +105,7 @@ public class ArmourAccessory extends Accessory {
             EquipmentSlot slotType = null;
 
             if (this.armourStack.getItem() instanceof ArmorItem) {
-                slotType = ((ArmorItem) this.armourStack.getItem()).getSlot();
+                slotType = ((ArmorItem) this.armourStack.getItem()).getType().getSlot();
             }
 
             dogIn.getAttributes().removeAttributeModifiers(this.armourStack.getAttributeModifiers(slotType));

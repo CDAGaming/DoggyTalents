@@ -217,14 +217,14 @@ public class ShepherdDogTalent extends TalentInstance {
                     double k3 = vec.z + dPosZ / size * (2 + this.targets.size() / 16);
 
                     if (teleport) {
-                        EntityUtil.tryToTeleportNearEntity(this.dog, this.dogPathfinder, new BlockPos(j3, this.dog.getY(), k3), 1);
+                        EntityUtil.tryToTeleportNearEntity(this.dog, this.dogPathfinder, BlockPos.containing(j3, this.dog.getY(), k3), 1);
                     }
 
                     this.dog.getLookControl().setLookAt(this.owner, 10.0F, this.dog.getMaxHeadXRot());
                     if (!this.dogPathfinder.moveTo(j3, this.owner.getBoundingBox().minY, k3, this.followSpeed)) {
                         if (this.dog.distanceToSqr(j3, this.owner.getBoundingBox().minY, k3) > 144D) {
                             if (!this.dog.isLeashed() && !this.dog.isPassenger()) {
-                                EntityUtil.tryToTeleportNearEntity(this.dog, this.dogPathfinder, new BlockPos(j3, this.dog.getY(), k3), 4);
+                                EntityUtil.tryToTeleportNearEntity(this.dog, this.dogPathfinder, BlockPos.containing(j3, this.dog.getY(), k3), 4);
                             }
                         }
                     }

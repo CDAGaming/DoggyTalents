@@ -54,7 +54,7 @@ public class DogInventoryButton extends Button {
     }
 
     @Override
-    public void renderButton(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+    public void renderWidget(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
         RenderSystem.setShaderTexture(0, Resources.SMALL_WIDGETS);
@@ -77,5 +77,25 @@ public class DogInventoryButton extends Button {
         }
 
         return super.getX();
+    }
+
+    /**
+     * Returns the current Hover state of this control
+     * <p>
+     * 0 if the button is disabled<p>
+     * 1 if the mouse is NOT hovering over this button<p>
+     * 2 if it IS hovering over this button.
+     */
+    protected int getYImage(boolean hoveredOrFocused) {
+        if (!active) {
+            return 0;
+        } else if (hoveredOrFocused) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
+    void renderBg(PoseStack matrixStack, Minecraft instance, int mouseX, int mouseY) {
     }
 }

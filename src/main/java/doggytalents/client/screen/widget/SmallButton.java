@@ -18,7 +18,7 @@ public class SmallButton extends Button {
     }
 
     @Override
-    public void renderButton(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+    public void renderWidget(PoseStack stack, int mouseX, int mouseY, float partialTicks) {
        Minecraft mc = Minecraft.getInstance();
        Font font = mc.font;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -32,5 +32,25 @@ public class SmallButton extends Button {
        this.renderBg(stack, mc, mouseX, mouseY);
        int j = getFGColor();
        this.drawCenteredString(stack, font, this.getMessage(), this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, j | Mth.ceil(this.alpha * 255.0F) << 24);
+    }
+
+    /**
+     * Returns the current Hover state of this control
+     * <p>
+     * 0 if the button is disabled<p>
+     * 1 if the mouse is NOT hovering over this button<p>
+     * 2 if it IS hovering over this button.
+     */
+    protected int getYImage(boolean hoveredOrFocused) {
+        if (!active) {
+            return 0;
+        } else if (hoveredOrFocused) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
+    void renderBg(PoseStack matrixStack, Minecraft instance, int mouseX, int mouseY) {
     }
 }

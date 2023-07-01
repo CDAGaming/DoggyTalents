@@ -498,18 +498,18 @@ public class DogEntity extends AbstractDogEntity {
     }
 
     @Override
-    public boolean rideableUnderWater() {
+    public boolean dismountsUnderwater() {
         for (IDogAlteration alter : this.alterations) {
             InteractionResult result = alter.rideableUnderWater(this);
 
             if (result.shouldSwing()) {
-                return true;
-            } else if (result == InteractionResult.FAIL) {
                 return false;
+            } else if (result == InteractionResult.FAIL) {
+                return true;
             }
         }
 
-        return super.rideableUnderWater();
+        return super.dismountsUnderwater();
     }
 
     @Override
@@ -550,14 +550,14 @@ public class DogEntity extends AbstractDogEntity {
         if (i > 0) {
             if (this.isVehicle()) {
                 for(Entity e : this.getPassengers()) {
-                   e.hurt(DamageSource.FALL, i);
+                   e.hurt(e.damageSources().fall(), i);
                 }
             }
 
             // Sound selection is copied from Entity#getFallDamageSound()
            this.playSound(i > 4 ? this.getFallSounds().big() : this.getFallSounds().small(), 1.0F, 1.0F);
            this.playBlockFallSound();
-           this.hurt(DamageSource.FALL, (float)i);
+           this.hurt(damageSources().fall(), (float)i);
            return true;
         } else {
            return false;
@@ -785,7 +785,7 @@ public class DogEntity extends AbstractDogEntity {
             critModifiers.forEach(attackDamageInst::removeModifier);
         }
 
-        boolean flag = target.hurt(DamageSource.mobAttack(this), damage);
+        boolean flag = target.hurt(target.damageSources().mobAttack(this), damage);
         if (flag) {
             this.doEnchantDamageEffects(this, target);
             this.statsTracker.increaseDamageDealt(damage);
@@ -1242,7 +1242,7 @@ public class DogEntity extends AbstractDogEntity {
                     case "forge.swimSpeed": name = ForgeMod.SWIM_SPEED; break;
                     case "forge.nameTagDistance": name = ForgeMod.NAMETAG_DISTANCE; break;
                     case "forge.entity_gravity": name = ForgeMod.ENTITY_GRAVITY; break;
-                    case "forge.reachDistance": name = ForgeMod.REACH_DISTANCE; break;
+                    case "forge.reachDistance": name = ForgeMod.BLOCK_REACH; break;
                     case "generic.maxHealth": name = Attributes.MAX_HEALTH; break;
                     case "generic.knockbackResistance": name = Attributes.KNOCKBACK_RESISTANCE; break;
                     case "generic.movementSpeed": name = Attributes.MOVEMENT_SPEED; break;
@@ -1988,9 +1988,9 @@ public class DogEntity extends AbstractDogEntity {
     }
 
     @Override
-    public Entity getControllingPassenger() {
+    public LivingEntity getControllingPassenger() {
         // Gets the first passenger which is the controlling passenger
-        return this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
+        return this.getPassengers().isEmpty() ? null : (LivingEntity) this.getPassengers().get(0);
     }
 
     //TODO

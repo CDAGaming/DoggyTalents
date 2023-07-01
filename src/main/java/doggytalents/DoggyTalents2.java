@@ -162,7 +162,7 @@ public class DoggyTalents2 {
             gen.addProvider(true, new DTAdvancementProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper()));
             DTBlockTagsProvider blockTagProvider = new DTBlockTagsProvider(packOutput, event.getLookupProvider(), event.getExistingFileHelper());
             gen.addProvider(true, blockTagProvider);
-            gen.addProvider(true, new DTItemTagsProvider(packOutput, event.getLookupProvider(), blockTagProvider, event.getExistingFileHelper()));
+            gen.addProvider(true, new DTItemTagsProvider(packOutput, event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
             gen.addProvider(true, new DTRecipeProvider(packOutput));
             gen.addProvider(true, new DTLootTableProvider(packOutput));
         }

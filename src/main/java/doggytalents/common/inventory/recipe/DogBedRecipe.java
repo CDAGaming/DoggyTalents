@@ -6,6 +6,7 @@ import doggytalents.api.registry.IBeddingMaterial;
 import doggytalents.api.registry.ICasingMaterial;
 import doggytalents.common.util.DogBedUtil;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
@@ -61,7 +62,7 @@ public class DogBedRecipe extends CustomRecipe implements IShapedRecipe<Crafting
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer inv) {
+    public ItemStack assemble(CraftingContainer inv, RegistryAccess access) {
         IBeddingMaterial beddingId = DogBedUtil.getBeddingFromStack(DoggyTalentsAPI.BEDDING_MATERIAL.get(), inv.getItem(1));
         ICasingMaterial casingId = DogBedUtil.getCasingFromStack(DoggyTalentsAPI.CASING_MATERIAL.get(), inv.getItem(0));
 

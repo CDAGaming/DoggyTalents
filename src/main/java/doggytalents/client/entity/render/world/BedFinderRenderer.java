@@ -54,7 +54,6 @@ public class BedFinderRenderer {
 
         // TODO: This line has no effect RenderSystem.lineWidth(2.0F);
 
-        RenderSystem.disableTexture();
         Vec3 vec3d = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
         double d0 = vec3d.x();
         double d1 = vec3d.y();
@@ -68,7 +67,6 @@ public class BedFinderRenderer {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.enableDepthTest(); //Make the line see thought blocks
         RenderSystem.depthMask(true);
-        RenderSystem.enableTexture();
         RenderSystem.disableBlend();
     }
 }

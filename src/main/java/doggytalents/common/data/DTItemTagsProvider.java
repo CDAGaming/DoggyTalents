@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 
 public class DTItemTagsProvider extends ItemTagsProvider {
 
-    public DTItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> providers, TagsProvider<Block> tagProvider, ExistingFileHelper existingFileHelper) {
+    public DTItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> providers, CompletableFuture<TagsProvider.TagLookup<Block>> tagProvider, ExistingFileHelper existingFileHelper) {
         super(packOutput, providers, tagProvider, Constants.MOD_ID, existingFileHelper);
     }
 

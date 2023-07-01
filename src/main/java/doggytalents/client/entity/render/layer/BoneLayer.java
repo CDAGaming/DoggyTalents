@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.world.item.ItemDisplayContext;
 
 public class BoneLayer extends RenderLayer<DogEntity, DogModel<DogEntity>> {
 
@@ -37,7 +38,7 @@ public class BoneLayer extends RenderLayer<DogEntity, DogModel<DogEntity>> {
             matrixStack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
             IThrowableItem throwableItem = dog.getThrowableItem();
-            this.itemInHandRenderer.renderItem(dog, throwableItem != null ? throwableItem.getRenderStack(dog.getBoneVariant()) : dog.getBoneVariant(), ItemTransforms.TransformType.GROUND, false, matrixStack, bufferSource, packedLight);
+            this.itemInHandRenderer.renderItem(dog, throwableItem != null ? throwableItem.getRenderStack(dog.getBoneVariant()) : dog.getBoneVariant(), ItemDisplayContext.GROUND, false, matrixStack, bufferSource, packedLight);
             matrixStack.popPose();
         }
     }

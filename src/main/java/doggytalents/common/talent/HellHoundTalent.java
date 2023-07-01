@@ -6,6 +6,7 @@ import doggytalents.api.registry.TalentInstance;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 
 public class HellHoundTalent extends TalentInstance {
@@ -26,7 +27,7 @@ public class HellHoundTalent extends TalentInstance {
 
     @Override
     public InteractionResult isInvulnerableTo(AbstractDogEntity dogIn, DamageSource source) {
-        if (source.isFire()) {
+        if (source.is(DamageTypes.IN_FIRE) || source.is(DamageTypes.ON_FIRE)) {
             return this.level() >= 5 ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
 
